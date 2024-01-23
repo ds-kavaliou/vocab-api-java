@@ -23,7 +23,7 @@ public class WordEntity {
     private DeckEntity deck;
 
     @OneToMany(mappedBy = "word", cascade = CascadeType.ALL)
-    private List<DefinitionEntity> definitions = new ArrayList<DefinitionEntity>();
+    private List<DefinitionEntity> definitions = new ArrayList<>();
 
     @Enumerated(EnumType.ORDINAL)
     private WordState state = WordState.STATE1;

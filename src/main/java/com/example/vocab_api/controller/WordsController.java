@@ -36,4 +36,15 @@ public class WordsController {
             return  ResponseEntity.internalServerError().body("something went wrong");
         }
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> remove(@PathVariable Long id) {
+        try {
+            return ResponseEntity.ok().body(service.removeById(id));
+        } catch (NotFoundException e) {
+            return ResponseEntity.notFound().build();
+        } catch (Exception e) {
+            return  ResponseEntity.internalServerError().body(e.getMessage());
+        }
+    }
 }

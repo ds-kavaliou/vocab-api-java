@@ -19,5 +19,5 @@ public class DeckEntity {
     private String name;
 
     @OneToMany(mappedBy = "deck", cascade = CascadeType.ALL)
-    private List<WordEntity> words = new ArrayList<WordEntity>();
+    private List<WordEntity> words = new ArrayList<>();
 }

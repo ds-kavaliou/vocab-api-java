@@ -13,6 +13,6 @@ public class WordReadDto {
     private Long id;
     private String name;
     private Long deckId;
-    private List<Long> definitions = new ArrayList<Long>();
+    private List<String> definitions = new ArrayList<String>();
     private WordEntity.WordState state;
 }

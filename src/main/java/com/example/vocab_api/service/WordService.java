@@ -43,14 +43,21 @@ public class WordService {
             throw new AlreadyExistsException(String.format("word '%s' already exists. provide another word", model.getName()));
         }
 
-        WordEntity word = new WordEntity();
-
+        WordEntity word = WordMapper.toEntity(model);
         word.setDeck(deck.get());
-        word.setName(model.getName());
 
-        word = wordRepository.save(word);
+        return WordMapper.toReadDto(wordRepository.save(word));
+    }
 
-        return WordMapper.toReadDto(word);
+    public Long removeById(Long id) throws NotFoundException {
+        Optional<WordEntity> entity = wordRepository.findById(id);
+
+        if (entity.isEmpty()) {
+            throw new NotFoundException(String.format("word with id: %s not found", id));
+        }
+
+        wordRepository.deleteById(id);
+        return id;
     }
 
     public Iterable<WordReadDto> getAll() {
